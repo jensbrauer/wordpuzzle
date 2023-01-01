@@ -22,11 +22,13 @@ def check_guess(word, board, scored_guesses):
     return False
 
 def run_game():
+    iter_count = 0
     puzzle_board = puzzle.get_puzzle()
     stringed_rows_and_cols = make_strings(puzzle_board[0])
     guess = ''
     score = 0
-    scored_guesses = ['hej']
+    scored_guesses = ['notaguessIguess']
+    points_were_scored = False
 
     while True:
         print('\n')
@@ -34,15 +36,19 @@ def run_game():
             print('  '.join(row))
         print('\n')
 
-        if guess == scored_guesses[-1]:
-            print(f'"{guess}" scored you a point!')
-        else:
-            print(f'No points for "{guess}"! Go again!')
+        if iter_count != 0:
+            if points_were_scored:
+                print(f'"{guess}" scored you a point!')
+            else:
+                print(f'No points for "{guess}". Go again!')
+        points_were_scored = False
         print(f'Current score: {score}')
         guess = input('Enter a word (Q/q to quit):').lower()
         if check_guess(guess, stringed_rows_and_cols, scored_guesses):
             score += 1
             scored_guesses.append(guess)
+            points_were_scored = True
+        iter_count += 1
 
 
 
