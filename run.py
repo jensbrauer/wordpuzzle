@@ -1,24 +1,7 @@
 from english_words import english_words_set
 import random
 
-letters = 'abcdefghijklmnopqrstuvwxyz'
-screen = [
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
-]
+
 
 
 def is_vertical():
@@ -42,25 +25,48 @@ def get_position(word):
             coordinates.append([horizontal_coordinate[0], horizontal_coordinate[1] + j])
         return coordinates
 
-list_of_word = []
-for word_to_print in random.sample(english_words_set, 500):
-    if len(word_to_print) < 14 and word_to_print[0].islower() :
-        start_position = get_position(word_to_print)
-        reference = ''
-        for i in word_to_print:
-            reference += '-'
-        appendix = []
-        for i in range(len(word_to_print)):
-            appendix.append(screen[start_position[i][0]][start_position[i][1]])
-        if ''.join(appendix) == reference:
-            for i in range(len(word_to_print)):
-                screen[start_position[i][0]][start_position[i][1]] = word_to_print[i]
-            list_of_word.append(word_to_print)
 
-for row in range(len(screen)):
-    for space in range(len(screen[row])):
-        if screen[row][space] == '-':
-            screen[row][space] = random.choice(letters)
-for row in screen:
-    print('  '.join(row))
-print(len(list_of_word))
+
+def get_puzzle():
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    screen = [
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],
+        ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
+    ]
+    list_of_word = []
+    for word_to_print in random.sample(english_words_set, 500):
+        if len(word_to_print) < 14 and word_to_print[0].islower() :
+            start_position = get_position(word_to_print)
+            reference = ''
+            for i in word_to_print:
+                reference += '-'
+            appendix = []
+            for i in range(len(word_to_print)):
+                appendix.append(screen[start_position[i][0]][start_position[i][1]])
+            if ''.join(appendix) == reference:
+                for i in range(len(word_to_print)):
+                    screen[start_position[i][0]][start_position[i][1]] = word_to_print[i]
+                list_of_word.append(word_to_print)
+
+    for row in range(len(screen)):
+        for space in range(len(screen[row])):
+            if screen[row][space] == '-':
+                screen[row][space] = random.choice(letters)
+    for row in screen:
+        print('  '.join(row))
+    print(len(list_of_word))
+
+get_puzzle()
