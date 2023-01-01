@@ -43,8 +43,10 @@ def run_game():
                 print(f'No points for "{guess}". Go again!')
         points_were_scored = False
         print(f'Current score: {score}')
-        guess = input('Enter a word (Q/q to quit):').lower()
-        if check_guess(guess, stringed_rows_and_cols, scored_guesses):
+        guess = input('Enter a word (Or type "I am done" to quit):').lower()
+        if guess == 'i am done':
+            return scored_guesses
+        elif check_guess(guess, stringed_rows_and_cols, scored_guesses):
             score += 1
             scored_guesses.append(guess)
             points_were_scored = True
@@ -53,4 +55,4 @@ def run_game():
 
 
 if input('Welcome to this wordpuzzle game, press enter to start!') == '':
-    run_game()
+    print(run_game())
