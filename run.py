@@ -25,6 +25,7 @@ def run_game():
     iter_count = 0
     puzzle_board = puzzle.get_puzzle()
     stringed_rows_and_cols = make_strings(puzzle_board[0])
+    all_planted_words = puzzle_board[2]
     guess = ''
     score = 0
     scored_guesses = []
@@ -42,14 +43,21 @@ def run_game():
             else:
                 print(f'No points for "{guess}". Go again!')
         points_were_scored = False
+
         print(f'Current score: {score}')
+        print(f'There are at least {len(all_planted_words)} words left to find.\n')
         guess = input('Enter a word (Or type "I am done" to quit):').lower()
+
         if guess == 'i am done':
             return scored_guesses, puzzle_board[2]
         elif check_guess(guess, stringed_rows_and_cols, scored_guesses):
             score += 1
             scored_guesses.append(guess)
             points_were_scored = True
+            for i in range(len(all_planted_words)):
+                if all_planted_words[i] == guess:
+                    all_planted_words.pop(i)
+                    break
         iter_count += 1
 
 def play_again():
@@ -77,8 +85,6 @@ if input('Welcome to this wordpuzzle game, press enter to start!') != 'Just abou
         print('\nNicely done!')
         print(f'You found a total of {len(all_found_words)} words in the puzzle:')
         print(', '.join(all_found_words))
-        print(f'\nYou found {len(found_planted_words)} of the words we planted:')
-        print(', '.join(found_planted_words))
         print(f'\nUnfortunatly, You missed {len(missed_planted_words)} of the words we planted:')
         print(', '.join(missed_planted_words))
         if play_again():

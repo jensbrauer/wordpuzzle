@@ -62,5 +62,4 @@ def get_puzzle():
         for space in range(len(screen[row])):
             if screen[row][space] == '-':
                 screen[row][space] = random.choice(letters)
-
     return screen, len(list_of_word), list_of_word
