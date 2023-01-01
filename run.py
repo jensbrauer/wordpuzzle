@@ -27,7 +27,7 @@ def run_game():
     stringed_rows_and_cols = make_strings(puzzle_board[0])
     guess = ''
     score = 0
-    scored_guesses = ['notaguessIguess']
+    scored_guesses = []
     points_were_scored = False
 
     while True:
@@ -45,14 +45,44 @@ def run_game():
         print(f'Current score: {score}')
         guess = input('Enter a word (Or type "I am done" to quit):').lower()
         if guess == 'i am done':
-            return scored_guesses
+            return scored_guesses, puzzle_board[2]
         elif check_guess(guess, stringed_rows_and_cols, scored_guesses):
             score += 1
             scored_guesses.append(guess)
             points_were_scored = True
         iter_count += 1
 
+def play_again():
+    while True:
+        command = input('Play again? (type Yes or No):')
+        if command == 'yes':
+            return True
+        elif command == 'no':
+            return False
+        else:
+            continue
 
+if input('Welcome to this wordpuzzle game, press enter to start!') != 'Just about anything that can be typed, you know?':
+    while True:
+        game_results = run_game()
+        all_found_words = game_results[0]
+        planted_words = game_results[1]
+        found_planted_words = [x for x in all_found_words if x in planted_words]
+        missed_planted_words = [x for x in planted_words if x not in all_found_words]
+        print('\n')
+        print('\n')
+        print('\n')
+        print('\n-____________________________GAME OVER!')
+        print('')
+        print('\nNicely done!')
+        print(f'You found a total of {len(all_found_words)} words in the puzzle:')
+        print(', '.join(all_found_words))
+        print(f'\nYou found {len(found_planted_words)} of the words we planted:')
+        print(', '.join(found_planted_words))
+        print(f'\nUnfortunatly, You missed {len(missed_planted_words)} of the words we planted:')
+        print(', '.join(missed_planted_words))
+        if play_again():
+            continue
+        else:
+            break
 
-if input('Welcome to this wordpuzzle game, press enter to start!') == '':
-    print(run_game())
