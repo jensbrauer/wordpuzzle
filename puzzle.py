@@ -1,6 +1,7 @@
 from english_words import english_words_set
 import random
 
+
 def get_pos(word):
     if random.choice([True, False]):
         vert_coord = [random.randint(0, 14 - len(word)), random.randint(0, 14)]
@@ -16,11 +17,10 @@ def get_pos(word):
         return coords
 
 
-
 def get_puzzle():
     letters = 'abcdefghijklmnopqrstuvwxyz'
-    screen = [['-' for x in range(15)] for y in range(15)]
-    list_of_word = []
+    puzzle = [['-' for x in range(15)] for y in range(15)]
+    words_list = []
     for word in random.sample(english_words_set, 500):
         if len(word) < 14 and word[0].islower():
             if len(word) >= 2 and "'" not in word:
@@ -30,14 +30,14 @@ def get_puzzle():
                     reference += '-'
                 appendix = []
                 for i in range(len(word)):
-                    appendix.append(screen[start_pos[i][0]][start_pos[i][1]])
+                    appendix.append(puzzle[start_pos[i][0]][start_pos[i][1]])
                 if ''.join(appendix) == reference:
                     for i in range(len(word)):
-                        screen[start_pos[i][0]][start_pos[i][1]] = word[i]
-                    list_of_word.append(word)
+                        puzzle[start_pos[i][0]][start_pos[i][1]] = word[i]
+                    words_list.append(word)
 
-    for row in range(len(screen)):
-        for space in range(len(screen[row])):
-            if screen[row][space] == '-':
-                screen[row][space] = random.choice(letters)
-    return screen, list_of_word
+    for row in range(len(puzzle)):
+        for space in range(len(puzzle[row])):
+            if puzzle[row][space] == '-':
+                puzzle[row][space] = random.choice(letters)
+    return puzzle, words_list

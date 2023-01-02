@@ -34,11 +34,15 @@ class Game():
         return string_list
 
     def run_game(self, word):
-        for string in self.is_word_correct():
-            if word in string and word in english_words_set:
-                if word not in self.found_words:
-                    self.found_words.append(word)
-                    break
+        if word.lower() == 'i am done':
+            return False
+        else:
+            for string in self.is_word_correct():
+                if word in string and word in english_words_set:
+                    if word not in self.found_words:
+                        self.found_words.append(word)
+                        return True
+            return True
     
     def how_many_left(self):
         words_left = []
@@ -47,8 +51,16 @@ class Game():
                 words_left.append(word)
         return len(words_left)
 
-#    def game_welcome():
-#    def exit_game():
+    def play_again(self):
+        while True:
+            command = input('\nPlay again? (type Yes or No):\n')
+            if command == 'yes':
+                return True
+            elif command == 'no':
+                return False
+            else:
+                print('\n\nOnly "Yes" or "No" are valid inputs.')
+                continue
 
 
 
