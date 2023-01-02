@@ -14,12 +14,14 @@ def make_strings(rows):
         string_list.append(''.join(col_string))
     return string_list
 
+
 def check_guess(word, board, scored_guesses):
     for string in board:
         if word in string and word in english_words_set:
             if word not in scored_guesses:
                 return True
     return False
+
 
 def run_game():
     iter_count = 0
@@ -45,7 +47,7 @@ def run_game():
         points_were_scored = False
 
         print(f'Current score: {score}')
-        print(f'There are at least {len(all_planted_words)} words left to find.\n')
+        print(f'At least {len(all_planted_words)} words left to find.\n')
         guess = input('Enter a word (Or type "I am done" to quit):').lower()
 
         if guess == 'i am done':
@@ -60,6 +62,7 @@ def run_game():
                     break
         iter_count += 1
 
+
 def play_again():
     while True:
         command = input('\nPlay again? (type Yes or No):')
@@ -70,20 +73,33 @@ def play_again():
         else:
             continue
 
-if input('Welcome to this wordpuzzle game, press enter to start!') != 'Just about anything that can be typed, you know?':
+
+print('\nWelcome to a game of wordpuzzle!')
+print('\nWe will show you a 15x15 letter matrix')
+print('in which we planted a set of english words.')
+print('\nWords in the matrix are written verticly from top to bottom,')
+print('or horizontaly from left to right.')
+print('\nIf you spot a word, type it into the command line and press enter.')
+print('For every word you find and enter, you score a point.')
+print('\nTo end game and see a list of the words you missed,')
+print('type "I am done" in the command line and hit enter.')
+
+
+dumbstring = 'Astringprobablynoonewilltype'
+if input('\nPress enter to start!') != dumbstring:
     while True:
         game_results = run_game()
         all_found_words = game_results[0]
         planted_words = game_results[1]
-        missed_planted_words = [x for x in planted_words if x not in all_found_words]
+        missed_words = [x for x in planted_words if x not in all_found_words]
         print('\n\n\n\n____________________________GAME OVER!\n')
         print('\nNicely done!')
-        print(f'You found a total of {len(all_found_words)} words in the puzzle:')
+        print(f'You found {len(all_found_words)} words in the puzzle:')
         print(', '.join(all_found_words))
-        print(f'\nUnfortunatly, You missed {len(missed_planted_words)} of the words we planted:')
-        print(', '.join(missed_planted_words))
+        print(f'\nUnfortunatly, you missed {len(missed_words)} words at min:')
+        print(', '.join(missed_words))
         if play_again():
             continue
         else:
+            print('\nThanks for playing!')
             break
-
