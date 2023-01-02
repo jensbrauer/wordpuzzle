@@ -1,15 +1,8 @@
 from english_words import english_words_set
 import random
 
-def is_vert():
-    if random.randint(0, 1) == 1:
-        return True
-    else:
-        return False
-
-
 def get_pos(word):
-    if is_vert():
+    if random.choice([True, False]):
         vert_coord = [random.randint(0, 14 - len(word)), random.randint(0, 14)]
         coords = []
         for j in range(len(word)):
