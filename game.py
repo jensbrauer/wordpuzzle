@@ -1,5 +1,5 @@
 import puzzle
-
+from english_words import english_words_set
 
 class Game():
     """Creates an instance of a game"""
@@ -21,13 +21,33 @@ class Game():
         print(len(self.board[0]))
         for row in self.board[0]:
             print('  '.join(row))
-            
+    
+    def is_word_correct(self):
+        string_list = []
+        for row in self.board[0]:
+            string_list.append(''.join(row))
+        for i in range(len(self.board[0])):
+            col_string = []
+            for row in self.board[0]:
+                col_string.append(row[i])
+            string_list.append(''.join(col_string))
+        return string_list
+
     def run_game(self, word):
-        self.found_words.append(word)
-        return print(f'cool {len(self.found_words)}, fuck you')
+        for string in self.is_word_correct():
+            if word in string and word in english_words_set:
+                if word not in self.found_words:
+                    self.found_words.append(word)
+                    break
+    
+    def how_many_left(self):
+        words_left = []
+        for word in self.board[1]:
+            if word not in self.found_words:
+                words_left.append(word)
+        return len(words_left)
 
 #    def game_welcome():
-#    def is_word_correct():
 #    def exit_game():
 
 
