@@ -25,7 +25,7 @@ def run_game():
     iter_count = 0
     puzzle_board = puzzle.get_puzzle()
     stringed_rows_and_cols = make_strings(puzzle_board[0])
-    all_planted_words = puzzle_board[2]
+    all_planted_words = puzzle_board[1]
     guess = ''
     score = 0
     scored_guesses = []
@@ -49,7 +49,7 @@ def run_game():
         guess = input('Enter a word (Or type "I am done" to quit):').lower()
 
         if guess == 'i am done':
-            return scored_guesses, puzzle_board[2]
+            return scored_guesses, puzzle_board[1]
         elif check_guess(guess, stringed_rows_and_cols, scored_guesses):
             score += 1
             scored_guesses.append(guess)
@@ -62,7 +62,7 @@ def run_game():
 
 def play_again():
     while True:
-        command = input('Play again? (type Yes or No):')
+        command = input('\nPlay again? (type Yes or No):')
         if command == 'yes':
             return True
         elif command == 'no':
@@ -75,13 +75,8 @@ if input('Welcome to this wordpuzzle game, press enter to start!') != 'Just abou
         game_results = run_game()
         all_found_words = game_results[0]
         planted_words = game_results[1]
-        found_planted_words = [x for x in all_found_words if x in planted_words]
         missed_planted_words = [x for x in planted_words if x not in all_found_words]
-        print('\n')
-        print('\n')
-        print('\n')
-        print('\n-____________________________GAME OVER!')
-        print('')
+        print('\n\n\n\n____________________________GAME OVER!\n')
         print('\nNicely done!')
         print(f'You found a total of {len(all_found_words)} words in the puzzle:')
         print(', '.join(all_found_words))
