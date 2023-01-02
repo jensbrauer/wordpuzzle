@@ -48,7 +48,7 @@ def run_game():
 
         print(f'Current score: {score}')
         print(f'At least {len(all_planted_words)} words left to find.\n')
-        guess = input('Enter a word (Or type "I am done" to quit):').lower()
+        guess = input('Enter a word (Or type "I am done" to quit):\n').lower()
 
         if guess == 'i am done':
             return scored_guesses, puzzle_board[1]
@@ -65,7 +65,7 @@ def run_game():
 
 def play_again():
     while True:
-        command = input('\nPlay again? (type Yes or No):')
+        command = input('\nPlay again? (type Yes or No):\n')
         if command == 'yes':
             return True
         elif command == 'no':
@@ -86,7 +86,7 @@ print('type "I am done" in the command line and hit enter.')
 
 
 dumbstring = 'Astringprobablynoonewilltype'
-if input('\nPress enter to start!') != dumbstring:
+if input('\nPress enter to start!\n') != dumbstring:
     while True:
         game_results = run_game()
         all_found_words = game_results[0]
