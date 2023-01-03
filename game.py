@@ -74,9 +74,9 @@ class Game():
             print(f'At least {self.how_many_left()} words left to find!')
         else:
             if self.point_scored:
-                print(f'\nNice Going! You found a word!')
+                print('\nNice Going! You found a word!')
             else:
-                print(f'\nSorry, no points for that one!')
+                print('\nSorry, no points for that one!')
             print(f'\nYour current score is {len(self.found_words)}.')
             if self.how_many_left() == 1:
                 print(f'At least {self.how_many_left()} word left to find!')
@@ -86,7 +86,7 @@ class Game():
                 print(f'At least {self.how_many_left()} words left to find!')
 
     def game_over(self):
-        print(f'\n\n\n\n ----------------------------GAME OVER')
+        print('\n\n\n\n ----------------------------GAME OVER')
         print('\nNice work!')
         not_found = [x for x in self.board[1] if x not in self.found_words]
         if len(self.found_words) == 1:
@@ -95,14 +95,14 @@ class Game():
             print(f'Sorry to say, you missed {len(not_found)}:')
             print(', '.join(not_found))
         elif len(self.found_words) == 0:
-            print(f"Even though you didn't find a single word!")
+            print("Even though you didn't find a single word!")
             print(f'Sorry to say, you missed {len(not_found)}:')
             print(', '.join(not_found))
         else:
             if len(not_found) == 0:
                 print(f'You found {len(self.found_words)} words!')
                 print(', '.join(self.found_words))
-                print(f'We do not know of any word you missed!')
+                print('We do not know of any word you missed!')
             else:
                 print(f'You found {len(self.found_words)} words!:')
                 print(', '.join(self.found_words))
