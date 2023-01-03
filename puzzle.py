@@ -10,10 +10,10 @@ def get_pos(word):
             coords.append([vert_coord[0] + j, vert_coord[1]])
         return coords
     else:
-        horiz_coord = [random.randint(0, 14), random.randint(0, 14 - len(word))]
+        hori_coord = [random.randint(0, 14), random.randint(0, 14 - len(word))]
         coords = []
         for j in range(len(word)):
-            coords.append([horiz_coord[0], horiz_coord[1] + j])
+            coords.append([hori_coord[0], hori_coord[1] + j])
         return coords
 
 

@@ -108,5 +108,3 @@ class Game():
                 print(', '.join(self.found_words))
                 print(f'Sorry to say, you missed {len(not_found)}:')
                 print(', '.join(not_found))
-
-        
