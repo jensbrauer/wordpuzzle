@@ -9,7 +9,7 @@ class Game():
         Returns a msg to the terminal introducing the game.
         Initiates some variables to store gamestate.
         """
-        print('\nWelcome to a game of wordpuzzle!')
+        print('\n\n\n\n\nWelcome to a game of wordpuzzle!')
         print('\nWe will show you a 15x15 letter matrix')
         print('in which we planted a set of english words.')
         print('\nWords in the matrix are written verticly from top to bottom,')
