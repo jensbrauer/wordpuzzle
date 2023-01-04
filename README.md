@@ -60,6 +60,14 @@ When user can not find any more words, they abort the game and get to see all th
   - Providing the user with the option to create a puzzle and play the game in a different language than English.
     - Perhaps google translate libs can be utilized and/or finding other dictionary sets.
 
+## Data Model 
+I decided to use a Game class as my model. The gameflow starts by assigning a variable new_game a Game object from the Game class. The init function creates a board using an external function and sets up som variables to store game state.
+
+The rest of the Game class consist of functions to manipulate and output values and messages from the Game object.
+
+This enabled a rather elegant and straight forward gameflow in run.py. In essence the gameflow consist of a two layer while loop creating a new Game object anditerating over it for as long as the user wants to. Furthermore, all functions and manipulations could be nicely organized in the Game class.
+
+
 ## Testing 
 #### Manual Testing
 - All game scenarios were tested manualy in local terminal before deployment
