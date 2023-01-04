@@ -1,4 +1,4 @@
-import puzzle
+import random
 from english_words import english_words_set
 
 
@@ -19,10 +19,69 @@ class Game():
         print('\nTo end game and see a list of the words you missed,')
         print('type "I am done" in the command line and hit enter.')
         input('\nPress enter to start!\n')
-        self.board = puzzle.get_puzzle()
+        self.board = self.get_puzzle()
         self.found_words = []
         self.rounds_played = 0
         self.point_scored = False
+
+    def get_puzzle(self):
+        """
+        Takes no parameter and returns a list.
+        First list is a list of lists, each containing "rows" of the puzzle.
+        Rows meaning; lists of singele letter strings.
+        Second return is a list of strings with all words placed in the puzzle.
+        """
+        puzzle = [['-' for x in range(15)] for y in range(15)]
+        words_list = []
+        for word in random.sample(english_words_set, 500):
+            if len(word) < 14 and word[0].islower():
+                if len(word) >= 2 and "'" not in word:
+                    start_pos = self.get_pos(word)
+                    reference = ''
+                    for i in word:
+                        reference += '-'
+                    appendix = []
+                    for i in range(len(word)):
+                        appendix.append(puzzle[start_pos[i][0]][start_pos[i][1]])
+                    if ''.join(appendix) == reference:
+                        for i in range(len(word)):
+                            puzzle[start_pos[i][0]][start_pos[i][1]] = word[i]
+                        words_list.append(word)
+        puzzle = self.fill_blanks(puzzle)
+        return puzzle, words_list
+
+    def fill_blanks(self, list):
+        """
+        Takes the puzzle with planted words in as parameter.
+        Returns the puzzle with blank spaces filled out with
+        random letters.
+        """
+        letters = 'abcdefghijklmnopqrstuvwxyz'
+        for row in range(len(list)):
+            for space in range(len(list[row])):
+                if list[row][space] == '-':
+                    list[row][space] = random.choice(letters)
+        return list
+
+    def get_pos(self, word):
+        """
+        Takes string as parameter and returns a list of lists,
+        each containing coordinates on the board.
+        Coordinates are verticaly or horizontaly cohesive and represent a "space",
+        suggested for the "word" to be placed in.
+        """
+        if random.choice([True, False]):
+            vert_coord = [random.randint(0, 14 - len(word)), random.randint(0, 14)]
+            coords = []
+            for j in range(len(word)):
+                coords.append([vert_coord[0] + j, vert_coord[1]])
+            return coords
+        else:
+            hori_coord = [random.randint(0, 14), random.randint(0, 14 - len(word))]
+            coords = []
+            for j in range(len(word)):
+                coords.append([hori_coord[0], hori_coord[1] + j])
+            return coords
 
     def display_board(self):
         """
@@ -32,7 +91,7 @@ class Game():
         for row in self.board[0]:
             print('  '.join(row).upper())
 
-    def rows_cols_str(self):
+    def __rows_cols_str(self):
         """
         Returns a list of strings containing all rows and all columns
         of the word puzzle matrix.
@@ -47,18 +106,19 @@ class Game():
             string_list.append(''.join(col_string))
         return string_list
 
-    def run_game(self, word):
+    def run_game(self):
         """
         Called every time user inputs a word into the terminal,
         taking in the string of input as parameter.
         Returns False if player wnats to exit game,
         returns true otherwise, only updating gamestate.
         """
+        word = input('Enter word(or "I am done" to quit): \n')
         self.rounds_played += 1
         if word.lower() == 'i am done':
             return False
         else:
-            for string in self.rows_cols_str():
+            for string in self.__rows_cols_str():
                 if word in string and word in english_words_set:
                     if word not in self.found_words:
                         self.found_words.append(word)
@@ -67,7 +127,7 @@ class Game():
             self.point_scored = False
             return True
 
-    def how_many_left(self):
+    def __how_many_left(self):
         """
         Returns an integer representing how many words,
         are still to be found in the puzzle base on how many
@@ -92,6 +152,7 @@ class Game():
             if command.lower() == 'yes':
                 return True
             elif command.lower() == 'no':
+                print('\nThanks for playing!')
                 return False
             else:
                 print('\n\nOnly "Yes" or "No" are valid inputs.')
@@ -105,19 +166,19 @@ class Game():
         """
         if self.rounds_played == 0:
             print(f'\nYour current score is {len(self.found_words)}')
-            print(f'At least {self.how_many_left()} words left to find!')
+            print(f'At least {self.__how_many_left()} words left to find!')
         else:
             if self.point_scored:
                 print('\nNice Going! You found a word!')
             else:
                 print('\nSorry, no points for that one!')
             print(f'\nYour current score is {len(self.found_words)}.')
-            if self.how_many_left() == 1:
-                print(f'At least {self.how_many_left()} word left to find!')
-            elif self.how_many_left() == 0:
+            if self.__how_many_left() == 1:
+                print(f'At least {self.__how_many_left()} word left to find!')
+            elif self.__how_many_left() == 0:
                 print("We don't know if there are any words left to find?")
             else:
-                print(f'At least {self.how_many_left()} words left to find!')
+                print(f'At least {self.__how_many_left()} words left to find!')
 
     def game_over(self):
         """
