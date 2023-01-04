@@ -132,19 +132,19 @@ class Game():
         if len(self.found_words) == 1:
             print(f'You found {len(self.found_words)} word:')
             print(''.join(self.found_words))
-            print(f'Sorry to say, you missed {len(not_found)}:')
+            print(f'\nSorry to say, you missed {len(not_found)}:')
             print(', '.join(not_found))
         elif len(self.found_words) == 0:
             print("Even though you didn't find a single word.")
-            print(f'Sorry to say, you missed {len(not_found)}:')
+            print(f'\nSorry to say, you missed {len(not_found)}:')
             print(', '.join(not_found))
         else:
             if len(not_found) == 0:
                 print(f'You found {len(self.found_words)} words:')
                 print(', '.join(self.found_words))
-                print('We do not know of any word you missed!')
+                print('\nWe do not know of any word you missed!')
             else:
                 print(f'You found {len(self.found_words)} words:')
                 print(', '.join(self.found_words))
-                print(f'Sorry to say, you missed {len(not_found)}:')
+                print(f'\nSorry to say, you missed {len(not_found)}:')
                 print(', '.join(not_found))
