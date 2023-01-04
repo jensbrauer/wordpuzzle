@@ -57,44 +57,41 @@ When user can not find any more words, they abort the game and get to see all th
 ### Features Left to Implement
 
 - __Language Choice__
-
   - Providing the user with the option to create a puzzle and play the game in a different language than English.
     - Perhaps google translate libs can be utilized and/or finding other dictionary sets.
 
 
 ## Testing 
-
+#### Manual Testing
 - All game scenarios were tested manualy in local terminal before deployment
 - The deployed heroku version was tested by myself and by friends
 
-#### Bugs found and addressed
-- The button with id="paper-button" in the players choice area caused the whole players area to expand downwards on hover.
+#### Bugs 
+- Indexing error from get_puzzle() function as words in set of english words contained words longer than 15 letters.
+  - Forced function to discard words longer than 14 letters.
+- No other bugs were found in testing.
 
-#### PEP8 Linter
-- [JSHint](https://jshint.com/) Returned 24 warnings about the JavaScript code. These warnings were all one of the following warnings;
-  - 'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).
-  - 'template literal syntax' is only available in ES6 (use 'esversion: 6').
-  - 'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).
-- In the Configure tab of JSHint under "Assume", I clicked "New JavaScript features (ES6)" which got rid of the warnings. I. e. this website assumes that user browsers support ES6.
+#### PEP8 Validation
+- [Code Institutes CI Python Linter, PEP8 heroku app](https://pep8ci.herokuapp.com/) returned 0 errors on the code.
 
 ## Deployment
 
 ### The finalized version of the website was deployed on GitHub pages.
-#### Step by step:
-- Navigate to to the github repository 'Settings' tab
-- Select 'Pages' in the left side menu
-- Under "Build and deployment" - "Branch"; Select 'Main' in the 'Select branch' drop-down menu.
-- Click Save
-- A green banner displays with a live link when deployment and build is finished.
+#### Process step by step:
+- Clone this repository
+- Create a new app on heroku
+- Set up a config var KEY: "PORT" and VALUE:"8000"
+- Set the buildback to Python and NodeJS in that same order
+- Link the Heroku app to the repository
+- Under "Manual deploy", select main branch and press "Deploy Branch"
+- After the build is finished, a success message will be displayed together with a button to view to deployed app.
 
-This is the live link for the deployed page - https://jensbrauer.github.io/rockpaperscissors/
-
-
-## Credits 
-A python set of english words
-[English Dictionary](https://pypi.org/project/english-words/)
+This is the live link for the deployed page - https://wordpuzzle.herokuapp.com/
 
 
-### Content 
+## Credits
 
-- The icons used for buttons and display areas were taken from [Font Awesome](https://fontawesome.com/)
+- __[Code Institute](https://codeinstitute.net/se/)__ 
+  - Provided [the template repository for this project](https://github.com/Code-Institute-Org/python-essentials-template) and the mock terminal deployed on Heroku
+- __[Matt Wiens](https://github.com/mwiens91)__
+  - Provided the set of [english words](https://pypi.org/project/english-words/) that is used to populate the word puzzle with words and to check if inputed words are english.
