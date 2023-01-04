@@ -6,6 +6,7 @@ Program looping until user does not want to play any more.
 Game instance looping to ask for new input until user aborts gameplay.
 """
 
+
 while True:
     new_game = Game()
     while True:

@@ -40,10 +40,10 @@ class Game():
                     reference = ''
                     for i in word:
                         reference += '-'
-                    appendix = []
+                    check = []
                     for i in range(len(word)):
-                        appendix.append(puzzle[start_pos[i][0]][start_pos[i][1]])
-                    if ''.join(appendix) == reference:
+                        check.append(puzzle[start_pos[i][0]][start_pos[i][1]])
+                    if ''.join(check) == reference:
                         for i in range(len(word)):
                             puzzle[start_pos[i][0]][start_pos[i][1]] = word[i]
                         words_list.append(word)
@@ -67,20 +67,22 @@ class Game():
         """
         Takes string as parameter and returns a list of lists,
         each containing coordinates on the board.
-        Coordinates are verticaly or horizontaly cohesive and represent a "space",
-        suggested for the "word" to be placed in.
+        Coordinates are verticaly or horizontaly cohesive
+        and represent a "space", suggested for the "word" to be placed in.
         """
         if random.choice([True, False]):
-            vert_coord = [random.randint(0, 14 - len(word)), random.randint(0, 14)]
+            """stacks the coordinates verticaly"""
+            coord = [random.randint(0, 14 - len(word)), random.randint(0, 14)]
             coords = []
             for j in range(len(word)):
-                coords.append([vert_coord[0] + j, vert_coord[1]])
+                coords.append([coord[0] + j, coord[1]])
             return coords
         else:
-            hori_coord = [random.randint(0, 14), random.randint(0, 14 - len(word))]
+            """stacks the coordinates horizontaly"""
+            coord = [random.randint(0, 14), random.randint(0, 14 - len(word))]
             coords = []
             for j in range(len(word)):
-                coords.append([hori_coord[0], hori_coord[1] + j])
+                coords.append([coord[0], coord[1] + j])
             return coords
 
     def display_board(self):
