@@ -3,6 +3,12 @@ import random
 
 
 def get_pos(word):
+    """
+    Takes string as parameter and returns a list of lists,
+    each containing coordinates on the board.
+    Coordinates are verticaly or horizontaly cohesive and represent a "space",
+    suggested for the "word" to be placed in.
+    """
     if random.choice([True, False]):
         vert_coord = [random.randint(0, 14 - len(word)), random.randint(0, 14)]
         coords = []
@@ -18,6 +24,12 @@ def get_pos(word):
 
 
 def get_puzzle():
+    """
+    Takes no parameter and returns a list.
+    First list is a list of lists, each containing the "rows" of the puzzle.
+    Rows meaning; lists of singele letter strings.
+    Second return is a list of strings with all words placed in the puzzle.
+    """
     letters = 'abcdefghijklmnopqrstuvwxyz'
     puzzle = [['-' for x in range(15)] for y in range(15)]
     words_list = []
