@@ -8,7 +8,7 @@ When player chooses to go for "game over", a list of the remaining unfound words
 
 [See this live link for the finalized project.](https://wordpuzzle.herokuapp.com/)
 
-![Responsice Mockup](#)
+![Responsice Mockup](https://github.com/jensbrauer/wordpuzzle/blob/main/docs/readme_images/responsivemockup.PNG)
 
 ## How to play
 
@@ -28,14 +28,14 @@ When user can not find any more words, they abort the game and get to see all th
   - Before game starts, user is given a walkthrough of the game flow and how to play.
   - When user presses Enter key. Game starts.
 
-![Instructions](#)
+![Instructions](https://github.com/jensbrauer/wordpuzzle/blob/main/docs/readme_images/instructions.PNG)
 
 - __Puzzle Generator__
 
   - A 15x15 letter matrix is generated for each started game. This is automatically and pseudo-randomly generated and so the user can always generate a new unique game and word puzzle with some ~25 hidden words in it.
   - At the end of the game, a list of the inserted words are displayed minus the ones that the user found themselves.
 
-![The Word Puzzle](#)
+![The Word Puzzle](https://github.com/jensbrauer/wordpuzzle/blob/main/docs/readme_images/displayedpuzzle.PNG)
 
 - __Game State Feedback__
 
@@ -44,14 +44,14 @@ When user can not find any more words, they abort the game and get to see all th
     - How many words are left to find?
     - How many points does the user have in total?
 
-![Game State Feedback](#)
+![Game State Feedback](https://github.com/jensbrauer/wordpuzzle/blob/main/docs/readme_images/gamestate.PNG)
 
 - __Game Over__
 
   - As the user exits the game, the user is provided with a list of the words they did not find. 
   - The user is provided the option to play again, with a new puzzle.
 
-![Game Over](#)
+![Game Over](https://github.com/jensbrauer/wordpuzzle/blob/main/docs/readme_images/gameover.PNG)
 
 
 ### Features Left to Implement
@@ -59,7 +59,6 @@ When user can not find any more words, they abort the game and get to see all th
 - __Language Choice__
   - Providing the user with the option to create a puzzle and play the game in a different language than English.
     - Perhaps google translate libs can be utilized and/or finding other dictionary sets.
-
 
 ## Testing 
 #### Manual Testing
@@ -72,11 +71,11 @@ When user can not find any more words, they abort the game and get to see all th
 - No other bugs were found in testing.
 
 #### PEP8 Validation
-- [Code Institutes CI Python Linter, PEP8 heroku app](https://pep8ci.herokuapp.com/) returned 0 errors on the code.
+- [Code Institutes CI Python Linter, PEP8 heroku app](https://pep8ci.herokuapp.com/) returned 0 errors on the python code.
 
 ## Deployment
 
-### The finalized version of the website was deployed on GitHub pages.
+### The finalized version of the app was deployed on Heroku.
 #### Process step by step:
 - Clone this repository
 - Create a new app on heroku
