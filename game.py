@@ -30,7 +30,7 @@ class Game():
         """
         print("\n\n")
         for row in self.board[0]:
-            print('  '.join(row))
+            print('  '.join(row).upper())
 
     def rows_cols_str(self):
         """
