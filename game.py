@@ -151,13 +151,17 @@ class Game():
         """
         while True:
             command = input('\n\nPlay again? (type Yes or No):\n')
-            if command.lower() == 'yes':
-                return True
-            elif command.lower() == 'no':
-                print('\nThanks for playing!')
-                return False
-            else:
-                print('\n\nOnly "Yes" or "No" are valid inputs.')
+            try:
+                if command.lower() != 'yes' and command.lower() != 'no':
+                    raise ValueError(f'\nSorry, {command} is not recognized')
+                else:
+                    if command.lower() == 'yes':
+                        return True
+                    elif command.lower() == 'no':
+                        print('\nThanks for playing!')
+                        return False
+            except ValueError as e:
+                print(f'Invalid input: {e}, please enter "Yes" or "No".')
                 continue
 
     def show_game_status(self):
