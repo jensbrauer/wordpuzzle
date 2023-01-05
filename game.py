@@ -19,12 +19,12 @@ class Game():
         print('\nTo end game and see a list of the words you missed,')
         print('type "I am done" in the command line and hit enter.')
         input('\nPress enter to start!\n')
-        self.board = self.get_puzzle()
+        self.board = self.__get_puzzle()
         self.found_words = []
         self.rounds_played = 0
         self.point_scored = False
 
-    def get_puzzle(self):
+    def __get_puzzle(self):
         """
         Takes no parameter and returns a list.
         First list is a list of lists, each containing "rows" of the puzzle.
@@ -36,7 +36,7 @@ class Game():
         for word in random.sample(english_words_set, 500):
             if len(word) < 14 and word[0].islower():
                 if len(word) >= 2 and "'" not in word:
-                    start_pos = self.get_pos(word)
+                    start_pos = self.__get_pos(word)
                     reference = ''
                     for i in word:
                         reference += '-'
@@ -47,23 +47,23 @@ class Game():
                         for i in range(len(word)):
                             puzzle[start_pos[i][0]][start_pos[i][1]] = word[i]
                         words_list.append(word)
-        puzzle = self.fill_blanks(puzzle)
+        puzzle = self.__fill_blanks(puzzle)
         return puzzle, words_list
 
-    def fill_blanks(self, list):
+    def __fill_blanks(self, fill_puzzle):
         """
         Takes the puzzle with planted words in as parameter.
         Returns the puzzle with blank spaces filled out with
         random letters.
         """
         letters = 'abcdefghijklmnopqrstuvwxyz'
-        for row in range(len(list)):
-            for space in range(len(list[row])):
-                if list[row][space] == '-':
-                    list[row][space] = random.choice(letters)
-        return list
+        for row in range(len(fill_puzzle)):
+            for space in range(len(fill_puzzle[row])):
+                if fill_puzzle[row][space] == '-':
+                    fill_puzzle[row][space] = random.choice(letters)
+        return fill_puzzle
 
-    def get_pos(self, word):
+    def __get_pos(self, word):
         """
         Takes string as parameter and returns a list of lists,
         each containing coordinates on the board.
